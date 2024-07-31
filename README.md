@@ -20,11 +20,11 @@ import (
 	"net/http"
 )
 
-type testInput struct {
+type nameInput struct {
 	Name string `json:"name"`
 }
 
-type testOutput struct {
+type greetingOutput struct {
 	Result string `json:"result"`
 }
 
@@ -32,8 +32,8 @@ type helloWorldEndpoint struct{}
 
 func (e helloWorldEndpoint) EndpointPattern() string { return "POST /hello" }
 
-func (e helloWorldEndpoint) Handle(in testInput) (*testOutput, error) {
-	return &testOutput{fmt.Sprintf("Hello, %s!", in.Name)}, nil
+func (e helloWorldEndpoint) Handle(in nameInput) (*greetingOutput, error) {
+	return &greetingOutput{fmt.Sprintf("Hello, %s!", in.Name)}, nil
 }
 
 func main() {
