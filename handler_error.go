@@ -4,6 +4,8 @@ import (
 	"net/http"
 )
 
+// HandlerError is the error to return from an [[EndpointHandler]] handler method to return with a message and status
+// back to the caller.
 type HandlerError struct {
 	StatusCode int
 	Message    string
@@ -11,6 +13,10 @@ type HandlerError struct {
 
 func NewHandlerError(code int, message string) HandlerError {
 	return HandlerError{code, message}
+}
+
+func BadRequestError(message string) HandlerError {
+	return NewHandlerError(http.StatusBadRequest, message)
 }
 
 func UnauthorizedError(message string) HandlerError {
