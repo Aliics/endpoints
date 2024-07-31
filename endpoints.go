@@ -68,8 +68,8 @@ func invokeEndpointHandleMethod(endpoint EndpointHandler, method reflect.Method)
 			fieldType := method.Type.In(i)
 
 			var value any
-			if fieldType.AssignableTo(reflect.TypeFor[Context]()) {
-				value = FromContext(ctx)
+			if fieldType.AssignableTo(reflect.TypeFor[context.Context]()) {
+				value = ctx
 			} else if fieldType.AssignableTo(reflect.TypeFor[url.Values]()) {
 				value = r.URL.Query()
 			} else {
